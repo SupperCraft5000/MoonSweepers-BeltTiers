@@ -1,0 +1,45 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Local game folder: copy GamePath.props.example to GamePath.props (ignored by git) or pass -p:GamePath="..." -->
+  <Import Project="GamePath.props" Condition="Exists('GamePath.props')" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>BeltTiers</AssemblyName>
+    <RootNamespace>BeltTiers</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Version>0.1.0</Version>
+    <Authors>SupperCraft5000</Authors>
+    <PackageLicenseExpression>GPL-3.0-or-later</PackageLicenseExpression>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <GamePath Condition="'$(GamePath)' == ''">C:\Program Files (x86)\Steam\steamapps\common\Moon Sweepers</GamePath>
+    <BepInExPath>$(GamePath)\BepInEx</BepInExPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="$(BepInExPath)\core\BepInEx.Core.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\core\BepInEx.Unity.IL2CPP.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\core\0Harmony.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\core\Il2CppInterop.Runtime.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\core\Il2CppInterop.Common.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\Assembly-CSharp.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\Il2Cppmscorlib.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\UnityEngine.CoreModule.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\UnityEngine.PhysicsModule.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\UnityEngine.IMGUIModule.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\UnityEngine.TextRenderingModule.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\Unity.InputSystem.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\Unity.TextMeshPro.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\UnityEngine.UI.dll" Private="false" />
+    <Reference Include="$(BepInExPath)\interop\UnityEngine.UIModule.dll" Private="false" />
+  </ItemGroup>
+
+  <Target Name="CopyToPlugins" AfterTargets="Build" Condition="Exists('$(BepInExPath)\plugins')">
+    <MakeDir Directories="$(BepInExPath)\plugins\BeltTiers" />
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(BepInExPath)\plugins\BeltTiers" />
+  </Target>
+
+</Project>

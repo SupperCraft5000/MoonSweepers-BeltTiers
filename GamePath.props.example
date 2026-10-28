@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <!-- Copy to GamePath.props and set your Moon Sweepers install folder. -->
+    <GamePath>C:\Program Files (x86)\Steam\steamapps\common\Moon Sweepers</GamePath>
+  </PropertyGroup>
+</Project>
